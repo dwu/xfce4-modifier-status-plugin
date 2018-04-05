@@ -1,0 +1,10 @@
+[Xfce Panel]
+Type=X-XFCE-PanelPlugin
+Encoding=UTF-8
+Name=Keyboard Modifier Status
+Comment=Shows which modifier keys are currently pressed
+Icon=input-keyboard-symbolic
+X-XFCE-Module=xfce4-modifier-status-plugin
+X-XFCE-Internal=false
+X-XFCE-Unique=true
+X-XFCE-API=2.0
