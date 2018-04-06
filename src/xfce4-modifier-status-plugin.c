@@ -147,9 +147,15 @@ void plugin_configure() {
   gtk_widget_show(GTK_WIDGET(app_context->settings));
 }
 
-static void plugin_register(XfcePanelPlugin *plugin) {
-    GtkWidget *frame;
+static void orientation_changed(XfcePanelPlugin *plugin, GtkOrientation orientation, gpointer *data) {
+  if (orientation == GTK_ORIENTATION_HORIZONTAL || xfce_panel_plugin_get_mode(plugin) == XFCE_PANEL_PLUGIN_MODE_DESKBAR) {
+    gtk_label_set_angle(GTK_LABEL(app_context->indicator), 0);
+  } else {
+    gtk_label_set_angle(GTK_LABEL(app_context->indicator), 90);
+  }
+}
 
+static void plugin_register(XfcePanelPlugin *plugin) {
     /* Initialize app_context */
     app_context = g_new0(AppContext, 1);
 
@@ -160,18 +166,18 @@ static void plugin_register(XfcePanelPlugin *plugin) {
     g_signal_connect(plugin, "configure-plugin", G_CALLBACK(plugin_configure), NULL);
 
     /* Draw panel indicator */
-    frame = gtk_frame_new(NULL);
+    GtkWidget* frame = gtk_frame_new(NULL);
     gtk_container_add(GTK_CONTAINER(plugin), frame);
 
     app_context->indicator = gtk_label_new("");
     gtk_container_add(GTK_CONTAINER(frame), app_context->indicator);
 
     app_context->keymap = gdk_keymap_get_for_display(gdk_display_get_default());
-    
+
     /* Load config and wire signals */
     load_and_update_config();
     g_signal_connect(app_context->keymap, "state-changed", G_CALLBACK (modifier_state_changed), NULL);
-   
+    g_signal_connect(plugin, "orientation-changed", G_CALLBACK(orientation_changed), NULL);
     gtk_widget_show_all(frame);
 }
 
