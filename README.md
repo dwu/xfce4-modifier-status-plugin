@@ -8,10 +8,12 @@ It provides a visual indication of the modifier keys currently pressed and is mo
 
 ## Installation instructions
 
+In addition to the XFCE development libraries make sure `xdt-csource` (XFCE >= 4.18) or `exo-csource` (XFCE &lt;4.18) is installed on your system. It's probably available as part of the package `xfce4-dev-tools` or similar from your distribution's package manager.
+
 The plugin uses the [Meson Build System](http://mesonbuild.com/).
 
 ```bash
-$ meson build
+$ meson setup build
 $ cd build
 $ ninja && sudo ninja install
 ```

@@ -1,6 +1,7 @@
 #include <gtk/gtk.h>
 #include <gdk/gdk.h>
 
+#include <libxfce4panel/libxfce4panel.h>
 #include <libxfce4panel/xfce-panel-plugin.h>
 #include <xfconf/xfconf.h>
 

@@ -6,6 +6,7 @@ gtkdep = dependency('gtk+-3.0')
 paneldep = dependency('libxfce4panel-2.0')
 xfconfdep = dependency('libxfconf-0')
 
-exocsource = find_program('exo-csource')
+exocsource = find_program('exo-csource', 'xdt-csource')
 
 subdir('src')
+
