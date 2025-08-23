@@ -10,15 +10,18 @@ It provides a visual indication of the modifier keys currently pressed and is mo
 
 In addition to the XFCE development libraries make sure `xdt-csource` (XFCE >= 4.18) or `exo-csource` (XFCE &lt;4.18) is installed on your system. It's probably available as part of the package `xfce4-dev-tools` or similar from your distribution's package manager.
 
+On Debian 13 the required dependencies can be installed via: `apt install build-essential meson cmake ninja-build pkg-config libgtk-3-dev libxfce4ui-2-dev libxfce4panel-2.0-dev xfce4-dev-tools`
+
 The plugin uses the [Meson Build System](http://mesonbuild.com/).
 
 ```bash
-$ meson setup build
+$ meson setup build --prefix=/usr
 $ cd build
 $ ninja && sudo ninja install
 ```
 
 The plugin consists of 2 files:
 
-  * `libxfce4-modifier-status-plugin.so`, installed to `/usr/lib/xfce4/panel/plugins` by default
-  * `xfce4-modifier-status-plugin.desktop`, installed to `/usr/share/xfce4/panel/plugins` by default
+  * `libxfce4-modifier-status-plugin.so`, installed to `/<prefix>/<libdir>/xfce4/panel/plugins` by default
+  * `xfce4-modifier-status-plugin.desktop`, installed to `/<prefix>/<libdir>/xfce4/panel/plugins` by default
+```
